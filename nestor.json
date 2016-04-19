@@ -1,0 +1,11 @@
+{
+  "name": "meetup",
+  "description": "meetup",
+  "permalink": "meetup",
+  "environment_keys": {
+    "NESTOR_MEETUP_KEY": {
+      "required": true,
+      "mode": "user"
+    }
+  }
+}
