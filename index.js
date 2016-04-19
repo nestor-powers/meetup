@@ -17,7 +17,7 @@ var colors = [
 ];
 
 module.exports = function(robot) {
-  robot.respond(/meetup topics/, function(msg, done) {
+  robot.respond(/meetup topics/, { suggestions: ["meetup topics"] }, function(msg, done) {
     var meetupHash = robot.brain.get('meetup.com') || {};
     var topicNames = Object.keys(meetupHash);
     if(topicNames.length == 0) {
@@ -31,7 +31,7 @@ module.exports = function(robot) {
     }
   });
 
-  robot.respond(/meetup topic remove (.*)$/, function(msg, done) {
+  robot.respond(/meetup topic remove (.*)$/, { suggestions: ["meetup topic remove <topic>"] }, function(msg, done) {
     var meetupHash = robot.brain.get('meetup.com') || {};
     var topicNames = Object.keys(meetupHash);
     if(topicNames.length == 0) {
@@ -60,7 +60,7 @@ module.exports = function(robot) {
     };
   });
 
-  robot.respond(/meetup topic add (.*)$/, function(msg, done) {
+  robot.respond(/meetup topic add (.*)$/, { suggestions: ["meetup topic add <topic>"] }, function(msg, done) {
     var topic = msg.match[1];
     meetup.getTopics({
       name: topic
@@ -104,7 +104,7 @@ module.exports = function(robot) {
     });
   });
 
-  robot.respond(/meetup events(?:\s+in country (\w+))?/, function(msg, done) {
+  robot.respond(/meetup (?:events|list)(?:\s+in country (\w+))?/, { suggestions: ["meetup events [in country <country-code>]"] }, function(msg, done) {
     var meetupHash = robot.brain.get('meetup.com') || {};
     var topicNames = Object.keys(meetupHash);
 
